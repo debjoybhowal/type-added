@@ -1,0 +1,22 @@
+<table class="table">
+  <thead class="thead-primary bg-primary text-light" app-table-head></thead>
+  <tbody>
+    <tr *ngFor="let affected of affecteds; let i = index">
+      <th scope="row">
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            [(ngModel)]="!affected.affected"
+            id="customCheck{{ i }}"
+          />
+          <label class="custom-control-label" for="customCheck{{ i }}"></label>
+        </div>
+      </th>
+      <td>{{ affected.id }}</td>
+      <td>{{ affected.name }}</td>
+      <td>{{ affected.city }}</td>
+      <td>{{ affected.gender == "male" ? "👨🏻" : "👩🏻" }}</td>
+    </tr>
+  </tbody>
+</table>

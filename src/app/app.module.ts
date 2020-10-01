@@ -2,17 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { AffectedComponent } from './affected/affected.component';
+import { AffectedFormComponent } from './affected/affected-form/affected-form.component';
+import { AffectedViewComponent } from './affected/affected-view/affected-view.component';
+import { TableHeadComponent } from './affected/affected-view/table-head/table-head.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AffectedComponent,
+    AffectedFormComponent,
+    AffectedViewComponent,
+    TableHeadComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

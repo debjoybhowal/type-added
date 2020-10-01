@@ -1,0 +1,17 @@
+<div class="container my-4">
+  <div class="starter-template">
+    <h1>Covid Affected 🦠</h1>
+    <p class="lead">
+      These are your friends affected in india.<br />
+      Please mark your friends as recoverd if they are recovered.
+    </p>
+  </div>
+  <div class="row my-5">
+    <div class="col-md-4">
+      <app-affected-form [affected]="affected"> </app-affected-form>
+    </div>
+    <div class="col-md-8">
+      <app-affected-view [affected]="affected"> </app-affected-view>
+    </div>
+  </div>
+</div>
