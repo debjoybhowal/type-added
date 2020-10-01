@@ -46,5 +46,10 @@ export class AffectedFormComponent implements OnInit {
       isInRecovered: false,
     });
     this.dataService.setData(this.affected);
+    this.resetForm();
+  }
+  resetForm() {
+    this.form.reset();
+    this.form.get('location').setValue('');
   }
 }

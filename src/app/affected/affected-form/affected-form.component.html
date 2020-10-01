@@ -10,7 +10,7 @@
 </div>
 
 <div class="starter-template">
-  <h3>Add Patient Friend</h3>
+  <h3>Add Patient Friend 😷</h3>
   <p class="lead">Use the below form to add a friend who is a patient.</p>
 </div>
 <form [formGroup]="form" (submit)="onSubmit()">
@@ -83,7 +83,13 @@
     </div>
     <div class="invalid-feedback">Please select a gender</div>
   </div>
-  <button class="btn btn-primary mb-2" [disabled]="this.form.invalid">
-    Add Patient
+  <button class="btn btn-primary mb-2 mr-2" [disabled]="this.form.invalid">
+    Add Patient</button
+  ><button
+    class="btn btn-warning mb-2 mr-2"
+    type="button"
+    (click)="resetForm()"
+  >
+    Reset
   </button>
 </form>
