@@ -9,6 +9,8 @@ import { AffectedFormComponent } from './affected/affected-form/affected-form.co
 import { AffectedViewComponent } from './affected/affected-view/affected-view.component';
 import { TableHeadComponent } from './affected/affected-view/table-head/table-head.component';
 import { FormsModule } from '@angular/forms';
+import { NavComponent } from './nav/nav.component';
+import { CountersPipe } from './counters.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { FormsModule } from '@angular/forms';
     AffectedFormComponent,
     AffectedViewComponent,
     TableHeadComponent,
+    NavComponent,
+    CountersPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
