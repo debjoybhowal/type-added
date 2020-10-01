@@ -13,28 +13,55 @@
   <h3>Add Patient Friend</h3>
   <p class="lead">Use the below form to add a friend who is a patient.</p>
 </div>
-<form>
+<form [formGroup]="form" (submit)="onSubmit()">
   <div class="form-group">
     <label>Name</label>
-    <input type="text" class="form-control" />
+    <input
+      type="text"
+      class="form-control"
+      formControlName="name"
+      [class.is-invalid]="
+        this.form.get('name').touched &&
+        this.form.get('name').hasError('required')
+      "
+      placeholder="eg. Debjoy"
+    />
+    <div class="invalid-feedback">Please enter patient name</div>
   </div>
   <div class="form-group">
     <label>Location</label>
-    <select class="custom-select">
-      <option selected disabled>Select a location</option>
+    <select
+      class="custom-select"
+      formControlName="location"
+      [class.is-invalid]="
+        this.form.get('location').touched &&
+        this.form.get('location').hasError('required')
+      "
+    >
+      <option selected disabled value="">Select a location</option>
       <option value="Kolkata">Kolkata</option>
       <option value="Chennai">Chennai</option>
       <option value="Chennai">Chennai</option>
       <option value="Bangalore">Bangalore</option>
       <option value="Pune">Pune</option>
     </select>
+
+    <div class="invalid-feedback">Please select a location</div>
   </div>
   <div class="form-group">
-    <div class="custom-control custom-radio custom-control-inline">
+    <label>Gender</label><br />
+    <div
+      class="custom-control custom-radio custom-control-inline"
+      [class.is-invalid]="
+        this.form.touched && this.form.get('location').hasError('required')
+      "
+    >
       <input
         type="radio"
         id="customRadioInline1"
         name="gender"
+        formControlName="gender"
+        value="male"
         class="custom-control-input"
       />
       <label class="custom-control-label" for="customRadioInline1"
@@ -45,13 +72,18 @@
       <input
         type="radio"
         id="customRadioInline2"
+        formControlName="gender"
         name="gender"
+        value="female"
         class="custom-control-input"
       />
       <label class="custom-control-label" for="customRadioInline2"
         >👩🏻 Female</label
       >
     </div>
+    <div class="invalid-feedback">Please select a gender</div>
   </div>
-  <button class="btn btn-primary mb-2">Add Patient</button>
+  <button class="btn btn-primary mb-2" [disabled]="this.form.invalid">
+    Add Patient
+  </button>
 </form>

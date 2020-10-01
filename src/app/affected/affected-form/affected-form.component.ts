@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/data.service';
 
 @Component({
@@ -9,6 +10,16 @@ import { DataService } from 'src/app/data.service';
 export class AffectedFormComponent implements OnInit {
   @Input() affected: any[];
   @Output() affectedChange = new EventEmitter<any[]>();
+
+  form = new FormGroup({
+    name: new FormControl('', Validators.required),
+    location: new FormControl('', Validators.required),
+    gender: new FormControl('', Validators.required),
+  });
+
+  /*,
+    location: new FormControl('', Validators.required),
+    gender: new FormControl('', Validators.required), */
 
   constructor(private dataService: DataService) {}
 
@@ -22,5 +33,18 @@ export class AffectedFormComponent implements OnInit {
     }));
     this.dataService.setData(this.affected);
     this.affectedChange.emit(this.affected);
+  }
+  onSubmit() {
+    console.log(this.form.get('name').value);
+    this.affected.push({
+      id: this.affected[this.affected.length - 1].id + 1,
+      name: this.form.get('name').value,
+      city: this.form.get('location').value,
+      gender: this.form.get('gender').value,
+      affected: false,
+      recovered: false,
+      isInRecovered: false,
+    });
+    this.dataService.setData(this.affected);
   }
 }
