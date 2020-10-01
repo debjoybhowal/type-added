@@ -1,0 +1,27 @@
+<table class="table">
+  <thead class="thead-success bg-success text-light" app-table-head></thead>
+  <tbody>
+    <ng-container *ngFor="let recovered of recovered; let i = index">
+      <tr *ngIf="recovered.isInRecovered">
+        <th scope="row">
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              [(ngModel)]="recovered.recovered"
+              id="customCheck{{ i }}"
+            />
+            <label
+              class="custom-control-label"
+              for="customCheck{{ i }}"
+            ></label>
+          </div>
+        </th>
+        <td>{{ recovered.id }}</td>
+        <td>{{ recovered.name }}</td>
+        <td>{{ recovered.city }}</td>
+        <td>{{ recovered.gender == "male" ? "👨🏻" : "👩🏻" }}</td>
+      </tr></ng-container
+    >
+  </tbody>
+</table>

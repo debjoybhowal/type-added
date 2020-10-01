@@ -1,0 +1,18 @@
+<app-nav [patientData]="recovered"></app-nav>
+<div class="container my-4">
+  <div class="starter-template">
+    <h1>Covid Recovered 😃</h1>
+    <p class="lead">
+      These are your Recovered friends in india.<br />
+      Please mark your friends as affected if they are affected again.
+    </p>
+  </div>
+  <div class="row my-5">
+    <div class="col-md-4">
+      <app-recovered-form [(recovered)]="recovered"> </app-recovered-form>
+    </div>
+    <div class="col-md-8">
+      <app-recovered-view [recovered]="recovered"> </app-recovered-view>
+    </div>
+  </div>
+</div>

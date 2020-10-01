@@ -11,6 +11,9 @@ import { TableHeadComponent } from './affected/affected-view/table-head/table-he
 import { FormsModule } from '@angular/forms';
 import { NavComponent } from './nav/nav.component';
 import { CountersPipe } from './counters.pipe';
+import { RecoveredComponent } from './recovered/recovered.component';
+import { RecoveredViewComponent } from './recovered/recovered-view/recovered-view.component';
+import { RecoveredFormComponent } from './recovered/recovered-form/recovered-form.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { CountersPipe } from './counters.pipe';
     TableHeadComponent,
     NavComponent,
     CountersPipe,
+    RecoveredComponent,
+    RecoveredViewComponent,
+    RecoveredFormComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

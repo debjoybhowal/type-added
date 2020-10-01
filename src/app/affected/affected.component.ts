@@ -10,8 +10,12 @@ export class AffectedComponent implements OnInit {
   constructor(private dataService: DataService) {}
   affected;
   ngOnInit(): void {
-    this.dataService
-      .getAllAffected()
-      .subscribe((affected) => (this.affected = affected));
+    this.affected = this.dataService.getData();
+    if (!this.affected) {
+      this.dataService.fetchData().subscribe((affected) => {
+        this.affected = affected;
+        this.dataService.setData(affected);
+      });
+    }
   }
 }
