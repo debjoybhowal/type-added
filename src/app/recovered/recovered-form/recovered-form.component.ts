@@ -9,11 +9,16 @@ import { DataService } from 'src/app/data.service';
 export class RecoveredFormComponent implements OnInit {
   @Input('recovered') recovered;
   @Output() recoveredChange = new EventEmitter<any[]>();
+  showAlert = false;
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {}
 
   moveToAffected() {
+    if (this.recovered.filter((item) => item.recovered).length <= 0) {
+      this.showAlert = true;
+      return;
+    } else this.showAlert = false;
     this.recovered = this.recovered.map((item) => ({
       ...item,
       isInRecovered:
@@ -22,5 +27,8 @@ export class RecoveredFormComponent implements OnInit {
     }));
     this.dataService.setData(this.recovered);
     this.recoveredChange.emit(this.recovered);
+  }
+  closeAlert() {
+    this.showAlert = false;
   }
 }
