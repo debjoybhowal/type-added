@@ -14,6 +14,7 @@ import { CountersPipe } from './counters.pipe';
 import { RecoveredComponent } from './recovered/recovered.component';
 import { RecoveredViewComponent } from './recovered/recovered-view/recovered-view.component';
 import { RecoveredFormComponent } from './recovered/recovered-form/recovered-form.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { RecoveredFormComponent } from './recovered/recovered-form/recovered-for
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

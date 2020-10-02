@@ -11,6 +11,8 @@ export class AffectedFormComponent implements OnInit {
   @Input() affected: any[];
   @Output() affectedChange = new EventEmitter<any[]>();
 
+  showAlert = false;
+
   form = new FormGroup({
     name: new FormControl('', Validators.required),
     location: new FormControl('', Validators.required),
@@ -26,6 +28,10 @@ export class AffectedFormComponent implements OnInit {
   ngOnInit(): void {}
 
   moveToRecovered() {
+    if (this.affected.filter((item) => item.affected).length <= 0) {
+      this.showAlert = true;
+      return;
+    } else this.showAlert = false;
     this.affected = this.affected.map((item) => ({
       ...item,
       isInRecovered: item.isInRecovered || item.affected,
@@ -51,5 +57,8 @@ export class AffectedFormComponent implements OnInit {
   resetForm() {
     this.form.reset();
     this.form.get('location').setValue('');
+  }
+  closeAlert() {
+    this.showAlert = false;
   }
 }
