@@ -4,9 +4,15 @@
     Click the button below to move the selected patients to affected status.
   </p>
 
-  <button class="btn btn-danger mb-2" (click)="moveToAffected()">
+  <button class="btn btn-primary mb-2" (click)="moveToAffected()">
     Move 😟
   </button>
+</div>
+<div class="starter-template mb-4">
+  <h3>Remove ✔ friends</h3>
+  <p class="lead">Click the button below to remove the selected patients.</p>
+
+  <button class="btn btn-danger mb-2" (click)="removeAll()">Remove 😀</button>
 </div>
 
 <div class="modal fade" [class.show]="showAlert">
@@ -27,8 +33,8 @@
         </button>
       </div>
       <div class="modal-body">
-        Please select atleast one of your frients before moving them to affected
-        state.
+        Please select atleast one of your friends before deleting or moving them
+        to another category.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="closeAlert()">
