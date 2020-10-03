@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
   @Input('patientData') patientData;
+  isCollapsed = true;
   constructor() {}
 
   ngOnInit(): void {}

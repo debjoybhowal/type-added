@@ -14,7 +14,8 @@ import { CountersPipe } from './counters.pipe';
 import { RecoveredComponent } from './recovered/recovered.component';
 import { RecoveredViewComponent } from './recovered/recovered-view/recovered-view.component';
 import { RecoveredFormComponent } from './recovered/recovered-form/recovered-form.component';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    CollapseModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
