@@ -1,4 +1,3 @@
-<app-nav [patientData]="recovered"></app-nav>
 <div class="container my-4">
   <div class="starter-template">
     <h1>Covid Recovered 😃</h1>
@@ -12,7 +11,7 @@
       <app-recovered-form [(recovered)]="recovered"> </app-recovered-form>
     </div>
     <div class="col-md-8">
-      <app-recovered-view [recovered]="recovered"> </app-recovered-view>
+      <app-table-view [patientData]="recovered" [recoveredMode]="true"> </app-table-view>
     </div>
   </div>
 </div>

@@ -9,7 +9,6 @@ import { DataService } from 'src/app/data.service';
 })
 export class AffectedFormComponent implements OnInit {
   @Input() affected: any[];
-  @Output() affectedChange = new EventEmitter<any[]>();
 
   showAlert = false;
 
@@ -38,7 +37,7 @@ export class AffectedFormComponent implements OnInit {
       affected: false,
     }));
     this.dataService.setData(this.affected);
-    this.affectedChange.emit(this.affected);
+    //this.affectedChange.emit(this.affected);
   }
   onSubmit() {
     console.log(this.form.get('name').value);

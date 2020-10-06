@@ -1,0 +1,59 @@
+<table class="table table-responsive-sm">
+  <thead class="thead-success bg-success text-light" app-thead [ngClass]="{
+  'bg-success':recoveredMode,
+  'bg-primary':!recoveredMode
+  
+  }"></thead>
+  <tbody>
+    <ng-container *ngFor="let patient of patientData; let i = index">
+      <tr *ngIf=" recoveredMode ?patient.isInRecovered: !patient.isInRecovered ">
+        <th scope="row">
+          <div class="custom-control custom-checkbox" *ngIf="recoveredMode">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              [(ngModel)]="patient.recovered"
+              id="customCheck{{ i }}r"
+              
+            />
+            <label
+              class="custom-control-label"
+              for="customCheck{{ i }}r"
+            ></label>
+          </div>
+          <div class="custom-control custom-checkbox" *ngIf="!recoveredMode">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              [(ngModel)]="patient.affected"
+              id="customCheck{{ i }}a"
+              
+            />
+            <label
+              class="custom-control-label"
+              for="customCheck{{ i }}a"
+            ></label>
+          </div>
+        </th>
+        <td>{{ patient.id }}</td>
+        <td>{{ patient.name }}</td>
+        <td>{{ patient.city }}</td>
+        <td>{{ patient.gender == "male" ? "👨🏻" : "👩🏻" }}</td>
+      </tr></ng-container
+    >
+  </tbody>
+</table>
+<div
+  class="d-flex justify-content-center align-items-center p-4"
+  *ngIf="!patientData"
+>
+  <div class="spinner-grow text-warning mx-2 spinner-grow-sm" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-warning mx-2" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-warning mx-2 spinner-grow-sm" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

@@ -12,10 +12,9 @@ export class AffectedComponent implements OnInit {
   ngOnInit(): void {
     this.affected = this.dataService.getData();
     if (!this.affected) {
-      this.dataService.fetchData().subscribe((affected) => {
-        this.affected = affected;
-        this.dataService.setData(affected);
-      });
+      this.dataService.fetchData();
     }
+
+    this.dataService.getEvenThrownDAta().subscribe(patientData=>this.affected=patientData);
   }
 }

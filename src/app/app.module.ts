@@ -6,29 +6,27 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AffectedComponent } from './affected/affected.component';
 import { AffectedFormComponent } from './affected/affected-form/affected-form.component';
-import { AffectedViewComponent } from './affected/affected-view/affected-view.component';
-import { TableHeadComponent } from './affected/affected-view/table-head/table-head.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './nav/nav.component';
 import { CountersPipe } from './counters.pipe';
 import { RecoveredComponent } from './recovered/recovered.component';
-import { RecoveredViewComponent } from './recovered/recovered-view/recovered-view.component';
+import { TableViewComponent } from './utils/table-view/table-view.component';
 import { RecoveredFormComponent } from './recovered/recovered-form/recovered-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { TheadComponent } from './utils/thead/thead.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AffectedComponent,
     AffectedFormComponent,
-    AffectedViewComponent,
-    TableHeadComponent,
     NavComponent,
     CountersPipe,
     RecoveredComponent,
-    RecoveredViewComponent,
+    TableViewComponent,
     RecoveredFormComponent,
+    TheadComponent,
   ],
   imports: [
     BrowserModule,

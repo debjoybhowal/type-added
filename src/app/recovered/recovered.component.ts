@@ -12,10 +12,9 @@ export class RecoveredComponent implements OnInit {
   ngOnInit(): void {
     this.recovered = this.dataService.getData();
     if (!this.recovered) {
-      this.dataService.fetchData().subscribe((recovered) => {
-        this.recovered = recovered;
-        this.dataService.setData(recovered);
-      });
+      this.dataService.fetchData();
     }
+    this.dataService.getEvenThrownDAta().subscribe(patientData=>this.recovered=patientData);
+
   }
 }
