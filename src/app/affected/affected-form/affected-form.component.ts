@@ -36,12 +36,11 @@ export class AffectedFormComponent implements OnInit {
       isInRecovered: item.isInRecovered || item.affected,
       affected: false,
     }));
-    this.dataService.setData(this.affected);
+    this.updateData();
     //this.affectedChange.emit(this.affected);
   }
   onSubmit() {
-    console.log(this.form.get('name').value);
-    this.affected.push({
+    this.affected=[...this.affected, {
       id: this.affected[this.affected.length - 1].id + 1,
       name: this.form.get('name').value,
       city: this.form.get('location').value,
@@ -49,15 +48,15 @@ export class AffectedFormComponent implements OnInit {
       affected: false,
       recovered: false,
       isInRecovered: false,
-    });
-    this.dataService.setData(this.affected);
+    }]
+    this.updateData()
     this.resetForm();
+  }
+  updateData(){
+    this.dataService.setData(this.affected);
   }
   resetForm() {
     this.form.reset();
     this.form.get('location').setValue('');
-  }
-  closeAlert() {
-    this.showAlert = false;
   }
 }

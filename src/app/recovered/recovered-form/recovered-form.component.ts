@@ -28,9 +28,6 @@ export class RecoveredFormComponent implements OnInit {
     this.dataService.setData(this.recovered);
     this.recoveredChange.emit(this.recovered);
   }
-  closeAlert() {
-    this.showAlert = false;
-  }
   removeAll() {
     if (this.recovered.filter((item) => item.recovered).length <= 0) {
       this.showAlert = true;

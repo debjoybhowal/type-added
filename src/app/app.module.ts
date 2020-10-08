@@ -15,6 +15,7 @@ import { RecoveredFormComponent } from './recovered/recovered-form/recovered-for
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TheadComponent } from './utils/thead/thead.component';
+import { ModalComponent } from './utils/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TheadComponent } from './utils/thead/thead.component';
     TableViewComponent,
     RecoveredFormComponent,
     TheadComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

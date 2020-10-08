@@ -10,11 +10,7 @@ export class AffectedComponent implements OnInit {
   constructor(private dataService: DataService) {}
   affected;
   ngOnInit(): void {
-    this.affected = this.dataService.getData();
-    if (!this.affected) {
-      this.dataService.fetchData();
-    }
 
-    this.dataService.getEvenThrownDAta().subscribe(patientData=>this.affected=patientData);
+    this.dataService.getData().subscribe(patientData=>this.affected=patientData);
   }
 }
