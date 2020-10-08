@@ -1,11 +1,18 @@
-<table class="table table-responsive-sm">
+<h5>Search your friend's name 🔍</h5>
+<div id="custom-search-input" class="mb-3">
+  <div class="input-group col-md-12">
+          <input type="text" class="form-control input-lg" placeholder="eg. Debjoy.." [(ngModel)]="query"/>     
+  </div>
+</div>
+
+<table class="table table-responsive-sm" *ngIf="patientData">
   <thead class="thead-success bg-success text-light" app-thead [ngClass]="{
   'bg-success':recoveredMode,
   'bg-primary':!recoveredMode
   
   }"></thead>
   <tbody>
-    <ng-container *ngFor="let patient of patientData; let i = index">
+    <ng-container *ngFor="let patient of patientData | filterName: query ; let i = index ">
       <tr *ngIf=" recoveredMode ?patient.isInRecovered: !patient.isInRecovered ">
         <th scope="row">
           <div class="custom-control custom-checkbox" *ngIf="recoveredMode">

@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TableViewComponent implements OnInit {
   @Input() patientData;
   @Input() recoveredMode;
+  query="";
   constructor() {}
 
   ngOnInit(): void {}

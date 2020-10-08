@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TheadComponent } from './utils/thead/thead.component';
 import { ModalComponent } from './utils/modal/modal.component';
+import { FilterNamePipe } from './filter-name.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ModalComponent } from './utils/modal/modal.component';
     RecoveredFormComponent,
     TheadComponent,
     ModalComponent,
+    FilterNamePipe,
   ],
   imports: [
     BrowserModule,
