@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, from } from 'rxjs';
+import { concatMap, filter, toArray } from 'rxjs/operators';
 import { DataService } from '../data.service';
 
 @Component({
@@ -11,6 +13,16 @@ export class AffectedComponent implements OnInit {
   affected;
   ngOnInit(): void {
 
-    this.dataService.getData().subscribe(patientData=>this.affected=patientData);
+    this.dataService.getData().subscribe((patientData) => {
+      const subject = new BehaviorSubject(patientData);
+      subject
+        .pipe(
+          concatMap((item) => from(item)),
+          filter((item: any) => !item.isInRecovered),
+          toArray()
+        )
+        .subscribe((patientData) => (this.affected = patientData));
+      subject.complete();
+    });
   }
 }

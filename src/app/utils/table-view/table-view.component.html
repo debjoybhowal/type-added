@@ -12,8 +12,7 @@
   
   }"></thead>
   <tbody>
-    <ng-container *ngFor="let patient of patientData | filterName: query ; let i = index ">
-      <tr *ngIf=" recoveredMode ?patient.isInRecovered: !patient.isInRecovered ">
+      <tr *ngFor="let patient of patientData | filterName: query ; let i = index ">
         <th scope="row">
           <div class="custom-control custom-checkbox" *ngIf="recoveredMode">
             <input
@@ -46,8 +45,7 @@
         <td>{{ patient.name }}</td>
         <td>{{ patient.city }}</td>
         <td>{{ patient.gender == "male" ? "👨🏻" : "👩🏻" }}</td>
-      </tr></ng-container
-    >
+      </tr>
   </tbody>
 </table>
 <div
