@@ -1,0 +1,215 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-4">
+      <h1>LIVE output from the form <small>🔴</small></h1>
+      <div class="alert alert-warning my-4">
+        <h3>Form Values:</h3>
+        <pre>{{ reactiveForm.value | json }}</pre>
+      </div>
+      <div class="alert alert-info my-4">
+        <h3>Form Status:</h3>
+        <p *ngIf="reactiveForm.invalid">Form is <span class="badge badge-danger">INVALID</span> 😟 👎</p>
+        <p *ngIf="!reactiveForm.invalid">Form is <span class="badge badge-success">VALID</span> 😄 👍</p>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h1>Form Validation <span class="text-danger">*</span></h1>
+      <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+        <!--Asoociate Name Field-->
+        <div class="form-group">
+          <input
+            type="text"
+            formControlName="associate_name"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                reactiveForm.get('associate_name').touched! &&
+                reactiveForm.get('associate_name').invalid
+            }"
+            placeholder="Associate Name"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="reactiveForm.get('associate_name').hasError('required')"
+          >
+            Please enter Associate Name
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="reactiveForm.get('associate_name').hasError('pattern')"
+          >
+            Accepts Alphabets, space & Min 5 to Max 30 Char
+          </div>
+        </div>
+
+        <!--Associate ID Field-->
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="associate_id"
+            [ngClass]="{
+              'is-invalid':
+                reactiveForm.get('associate_id').touched! &&
+                reactiveForm.get('associate_id').invalid
+            }"
+            placeholder="Associate Id"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="reactiveForm.get('associate_id').hasError('required')"
+          >
+            Please enter Associate Id
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="reactiveForm.get('associate_id').hasError('pattern')"
+          >
+            Invalid Associate Id
+          </div>
+        </div>
+
+        <!--Project ID-->
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Project ID"
+            [ngClass]="{
+              'is-invalid':
+                reactiveForm.get('project_id').touched! &&
+                reactiveForm.get('project_id').invalid
+            }"
+            formControlName="project_id"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="reactiveForm.get('project_id').hasError('required')"
+          >
+            Please enter the Project id.
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="reactiveForm.get('project_id').hasError('pattern')"
+          >
+            Invalid Associate Id
+          </div>
+        </div>
+
+        <!--Location Selection-->
+        <div class="form-group form-inline">
+          <div class="form-check mr-2">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="ofshore-check"
+              name="location-check"
+              value="off"
+              (click)="setLocationSelection(false)"
+            /><label class="form-check-label" for="ofshore-check">
+              Offshore
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="onshore-check"
+              name="location-check"
+              value="on"
+              (click)="setLocationSelection(true)"
+            /><label class="form-check-label" for="onshore-check">
+              Onshore
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <select
+            class="custom-select"
+            [ngClass]="{
+              'is-invalid':
+                reactiveForm.get('location').touched! &&
+                reactiveForm.get('location').invalid
+            }"
+            formControlName="location"
+          >
+            <option value="" disabled selected>Select Location</option>
+            <option value="location" *ngFor="let location of locationList">
+              {{ location }}
+            </option>
+          </select>
+
+          <div class="invalid-feedback">Please select Location</div>
+        </div>
+
+        <!--Skills Checkboxes-->
+        <div class="form-group">
+          <div class="row">
+            <div
+              class="col-sm-4"
+              *ngFor="let skill of skillsData; let i = index"
+            >
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  [value]="skill.value"
+                  (change)="onCheckboxChange($event)"
+                  id="defaultCheck{{ i }}"
+                />
+                <label class="form-check-label" for="defaultCheck{{ i }}">
+                  {{ skill.name }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="text-danger" *ngIf="reactiveForm.get('skills').invalid">
+            Please select Min 5 skills.
+          </div>
+        </div>
+
+        <!---Choose Picture-->
+        <div class="form-group is-invalid">
+          <input
+            type="file"
+            class="form-control is-invalid h-auto p-0 form-contol-file"
+            [ngClass]="{
+              'is-invalid':
+                reactiveForm.get('upload_image').touched! &&
+                reactiveForm.get('upload_image').invalid
+            }"
+            formControlName="upload_image"
+            id="exampleFormControlFile1"
+          />
+          <div class="invalid-feedback">Please upload Profile Picture</div>
+        </div>
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            id="Comments"
+            placeholder="Comments"
+            [ngClass]="{
+              'is-invalid':
+                reactiveForm.get('comments').touched! &&
+                reactiveForm.get('comments').invalid
+            }"
+            formControlName="comments"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Please Enter Comments.</div>
+        </div>
+        <button
+          type="submit"
+          [disabled]="reactiveForm.invalid"
+          class="btn btn-primary mr-2"
+        >
+          Submit
+        </button>
+        <button class="btn btn-danger" type="reset" (click)="resetTheForm()">
+          Reset
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -17,6 +17,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TheadComponent } from './utils/thead/thead.component';
 import { ModalComponent } from './utils/modal/modal.component';
 import { FilterNamePipe } from './filter-name.pipe';
+import { ReactiveComponent } from './reactive/reactive.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FilterNamePipe } from './filter-name.pipe';
     TheadComponent,
     ModalComponent,
     FilterNamePipe,
+    ReactiveComponent,
   ],
   imports: [
     BrowserModule,
