@@ -1,26 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { concatMap, filter, map, mergeMap, toArray } from 'rxjs/operators';
-import { BehaviorSubject, concat, from, Observable, of } from 'rxjs';
+import { concatMap, filter, toArray } from 'rxjs/operators';
+import { BehaviorSubject, from } from 'rxjs';
+import { Patient } from '../utils/patient.model';
 
 @Component({
   selector: 'app-recovered',
   templateUrl: './recovered.component.html',
-  styleUrls: ['./recovered.component.css'],
 })
 export class RecoveredComponent implements OnInit {
   constructor(private dataService: DataService) {}
-  recovered;
+  recovered: Patient[];
   ngOnInit(): void {
-    this.dataService.getData().subscribe((patientData) => {
-      const subject = new BehaviorSubject(patientData);
+    this.dataService.getData().subscribe((patientData: Patient[]) => {
+      const subject = new BehaviorSubject<Patient[]>(patientData);
       subject
         .pipe(
-          concatMap((item) => from(item)),
-          filter((item: any) => item.isInRecovered),
+          concatMap((item: Patient[]) => from(item)),
+          filter((item: Patient) => item.isInRecovered),
           toArray()
         )
-        .subscribe((patientData) => (this.recovered = patientData));
+        .subscribe((patientData: Patient[]) => (this.recovered = patientData));
       subject.complete();
     });
   }

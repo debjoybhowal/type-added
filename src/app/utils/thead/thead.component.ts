@@ -9,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
     <th scope="col">City 🏙</th>
     <th scope="col">Gender</th>
   </tr> `,
-  styleUrls: ['./thead.component.css'],
 })
 export class TheadComponent implements OnInit {
   constructor() {}

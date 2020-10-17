@@ -1,50 +1,48 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
+import { Patient } from './utils/patient.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
   constructor(private http: HttpClient) {}
-  private data = new ReplaySubject();
-  private globalData: any;
+  private data = new ReplaySubject<Patient[]>();
+  private globalData: Patient[];
 
-  fetchData(): any {
-    return this.http
+  fetchData(): void {
+    this.http
       .get('https://jsonblob.com/api/56dd39e0-03a8-11eb-909d-174cccafc67e')
-      .subscribe((patientData) => {
+      .subscribe((patientData: Patient[]) => {
         this.data.next(patientData);
         this.globalData = patientData;
       });
   }
-  getData(): any {
+  getData(): ReplaySubject<Patient[]> {
     if (!this.globalData) this.fetchData();
     return this.data;
   }
-  setData(data: any[]): void {
-    data.forEach((item) => {
-      console.log(item);
-      this.globalData=this.globalData.map((patient) => {
-        return item.id == patient.id?item:patient;
+  setData(data: Patient[]): void {
+    data.forEach((item: Patient) => {
+      this.globalData = this.globalData.map((patient: Patient) => {
+        return item.id == patient.id ? item : patient;
       });
     });
 
     this.data.next(this.globalData);
   }
-  removeData(data: any[]): void {
-    console.log(data)
-    data.forEach((item) => {
-      console.log(item);
-      this.globalData=this.globalData.filter((patient) => {
+  removeData(data: Patient[]): void {
+    data.forEach((item: Patient) => {
+      this.globalData = this.globalData.filter((patient: Patient) => {
         return item.id !== patient.id;
       });
     });
 
     this.data.next(this.globalData);
   }
-  addData(data:any):void{
-    this.globalData=[...this.globalData,data];    
+  addData(data: Patient): void {
+    this.globalData = [...this.globalData, data];
     this.data.next(this.globalData);
   }
 }

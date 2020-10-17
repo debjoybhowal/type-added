@@ -1,14 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/data.service';
+import { Patient } from 'src/app/utils/patient.model';
 
 @Component({
   selector: 'app-affected-form',
   templateUrl: './affected-form.component.html',
-  styleUrls: ['./affected-form.component.css'],
 })
 export class AffectedFormComponent implements OnInit {
-  @Input() affected: any[];
+  @Input() affected: Patient[];
 
   showAlert = false;
 
@@ -18,28 +18,23 @@ export class AffectedFormComponent implements OnInit {
     gender: new FormControl('', Validators.required),
   });
 
-  /*,
-    location: new FormControl('', Validators.required),
-    gender: new FormControl('', Validators.required), */
-
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {}
 
-  moveToRecovered() {
-    if (this.affected.filter((item) => item.affected).length <= 0) {
+  moveToRecovered(): void {
+    if (this.affected.filter((item: Patient) => item.affected).length <= 0) {
       this.showAlert = true;
       return;
     } else this.showAlert = false;
-    this.affected = this.affected.map((item) => ({
+    this.affected = this.affected.map((item: Patient) => ({
       ...item,
       isInRecovered: item.isInRecovered || item.affected,
       affected: false,
     }));
     this.dataService.setData(this.affected);
-    //this.affectedChange.emit(this.affected);
   }
-  onSubmit() {
+  onSubmit(): void {
     this.dataService.addData({
       id: this.affected[this.affected.length - 1].id + 1,
       name: this.form.get('name').value,
@@ -48,10 +43,10 @@ export class AffectedFormComponent implements OnInit {
       affected: false,
       recovered: false,
       isInRecovered: false,
-    })
+    });
     this.resetForm();
   }
-  resetForm() {
+  resetForm(): void {
     this.form.reset();
     this.form.get('location').setValue('');
   }

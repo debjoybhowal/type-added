@@ -1,20 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input,  Output } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  styleUrls: ['./modal.component.css'],
 })
-export class ModalComponent implements OnInit {
-  @Input() show;
-  @Output() showChange= new EventEmitter();
-  constructor() { }
+export class ModalComponent {
+  @Input() show: boolean;
+  @Output() showChange = new EventEmitter();
 
-  ngOnInit(): void {
-  }
-
-  closeDialog(){
+  closeDialog() {
     this.showChange.emit();
   }
-
 }

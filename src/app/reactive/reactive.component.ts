@@ -5,13 +5,11 @@ import { CustormValidators } from '../custom.validator';
 @Component({
   selector: 'app-reactive',
   templateUrl: './reactive.component.html',
-  styleUrls: ['./reactive.component.css']
 })
 export class ReactiveComponent implements OnInit {
-
   reactiveForm: FormGroup;
 
-  skillsData: Array<any> = [
+  skillsData: Array<{ name: string; value: string }> = [
     { name: 'HTML5,CSS3,JS', value: 'HTML5,CSS3,JS' },
     { name: 'Angular 8', value: 'Angular 8' },
     { name: 'Express JS', value: 'Express JS' },
@@ -24,9 +22,9 @@ export class ReactiveComponent implements OnInit {
     { name: 'Typescript', value: 'Typescript' },
   ];
 
-  locationList = [];
-  offShoreList = ['Chennai', 'Bangalore', 'Hyderabad', 'Pune', 'Kochi'];
-  onShoreList = ['US', 'Non US'];
+  locationList :string[]= [];
+  offShoreList :string[]= ['Chennai', 'Bangalore', 'Hyderabad', 'Pune', 'Kochi'];
+  onShoreList :string[]= ['US', 'Non US'];
 
   ngOnInit(): void {
     this.reactiveForm = new FormGroup({
@@ -50,7 +48,7 @@ export class ReactiveComponent implements OnInit {
   }
   onCheckboxChange(e): void {
     const checkArray: FormArray = this.reactiveForm.get('skills') as FormArray;
-
+    console.log(e);
     if (e.target.checked) {
       checkArray.push(new FormControl(e.target.value));
     } else {
@@ -62,7 +60,7 @@ export class ReactiveComponent implements OnInit {
     }
   }
 
-  onSubmit(){
+  onSubmit(): void {
     console.log(this.reactiveForm);
   }
 
@@ -73,5 +71,4 @@ export class ReactiveComponent implements OnInit {
     this.reactiveForm.reset();
     this.locationList = [];
   }
-
 }
